@@ -1,2 +1,2 @@
 # ticketing
-Udemy microservices course about a ticketing servide
+📚 Personal repo to study and test microservices with node.js and express.js
