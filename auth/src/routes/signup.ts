@@ -9,7 +9,6 @@ import { BadRequestError } from "../errors/bad-request-error";
 import { User } from "../models/user";
 
 const router = express.Router();
-const JWT_KEY = process.env.JWT_KEY;
 
 router.post(
   "/api/users/signup",
@@ -22,6 +21,8 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    const JWT_KEY = process.env.JWT_KEY;
+
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
 
@@ -39,6 +40,8 @@ router.post(
     req.session = {
       jwt: userJwt,
     };
+
+    console.log("--- i'm here");
 
     res.status(201).send(user);
   }

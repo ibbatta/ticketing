@@ -1,5 +1,5 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
 import { app } from "../app";
 
@@ -15,6 +15,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
+
   for (let collection of collections) {
     await collection.deleteMany({});
   }

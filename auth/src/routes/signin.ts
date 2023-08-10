@@ -11,7 +11,6 @@ import { validateRequest } from "../middlewares/validate-request";
 import { BadRequestError } from "../errors/bad-request-error";
 
 const router = express.Router();
-const JWT_KEY = process.env.JWT_KEY;
 
 router.post(
   "/api/users/signin",
@@ -24,8 +23,9 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    const JWT_KEY = process.env.JWT_KEY;
 
+    const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
