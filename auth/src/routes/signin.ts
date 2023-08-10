@@ -23,8 +23,6 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const JWT_KEY = process.env.JWT_KEY;
-
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
 
@@ -44,7 +42,7 @@ router.post(
     // Generate JWT
     const userJwt = jwt.sign(
       { id: existingUser._id, email: existingUser.email },
-      JWT_KEY!
+      process.env.JWT_KEY!
     );
 
     // Store it on session object
