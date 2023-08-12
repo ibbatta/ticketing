@@ -17,3 +17,15 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+
+    # CLIENT SERVICE
+    - image: ticketing/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+          - src: "**/*.jsx"
+            dest: .
